@@ -1,4 +1,5 @@
 # Sistema-simples-de-conta-b-ncaria
+# Menu de  opção  de escolha do usuário
 menu = """
 
 [1] Depositar
@@ -8,17 +9,21 @@ menu = """
 
 => """
 
-saldo = 0
+saldo = 0                 # Valorr do  saldo inicial
 limite = 500
 extrato = ""
-numero_saques = 0
-LIMITE_SAQUES = 3
+numero_saques = 0         # Contador de saque
+LIMITE_SAQUES = 3         # Limite de saque
+
+# Laço para a definição da escolha do usuário
 
 while True:
 
     opcao = int(input(menu))
 
-    if opcao == 1:
+# Condições conforme a escollha do usuário
+
+    if opcao == 1:               # Opção para depósito
         valor = float(input("Informe o valor do depósito: R$ "))
 
         if valor > 0:
@@ -29,7 +34,7 @@ while True:
         else:
             print("Operação falhou! O valor informado é inválido.")
 
-    elif opcao == 2:
+    elif opcao == 2:        # Opção para saque(informar o valor do saque)
         valor = float(input("Informe o valor do saque: R$ "))
 
         excedeu_saldo = valor > saldo
@@ -37,6 +42,8 @@ while True:
         excedeu_limite = valor > limite
 
         excedeu_saques = numero_saques >= LIMITE_SAQUES
+
+    # Exibe a mensagen se não digitado conforme as condições de saque
 
         if excedeu_saldo:
             print("Operação falhou! Você não tem saldo suficiente.")
@@ -55,14 +62,14 @@ while True:
         else:
             print("Operação falhou! O valor informado é inválido.")
 
-    elif opcao == 3:
+    elif opcao == 3:           # Exibe o extrato da conta do usuário
         print("\n================ EXTRATO ================")
         print("Não foram realizadas movimentações." if not extrato else extrato)
         print(f"\nSaldo: R$ {saldo:.2f}")
         print("==========================================")
 
-    elif opcao == 4:
+    elif opcao == 4:         # Opção para quebrar o laço e sair do menu
         break
 
     else:
-        print("Operação inválida, por favor selecione novamente a operação desejada.")
+        print("Operação inválida, por favor selecione novamente a operação desejada.")      # Se não for escolhido nenhuma das opções do menu, repete o laço
